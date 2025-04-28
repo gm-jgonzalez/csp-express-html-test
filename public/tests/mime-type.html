@@ -1,0 +1,27 @@
+<!-- public/tests/mime-type.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: MIME Type Mismatch</title>
+  <link rel="stylesheet"  href="../base-styles.css"/>
+</head>
+<body>
+  <h1>Test: Manejo incorrecto de MIME-type</h1>
+  <p>Esta página intenta cargar un script disfrazado como una imagen.</p>
+  
+  <!-- Para que esto funcione, necesitas crear un archivo fake-image.jpg en la carpeta public con código JavaScript -->
+  <script type="text/plain" src="../fake-image.js"></script>
+  
+  <div id="result">
+    <p>Si la política CSP está funcionando correctamente, el recurso con tipo MIME incorrecto debería ser bloqueado y se debería generar un reporte.</p>
+  </div>
+  
+  <p><a href="/">Volver al inicio</a></p>
+  
+  <div class="note">
+    <p><strong>Nota:</strong> Para que esta prueba funcione, necesitas crear un archivo llamado <code>fake-image.jpg</code> en la carpeta <code>public</code> que contenga código JavaScript en lugar de datos de imagen.</p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!-- public/tests/malicious-iframe.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: Malicious iFrame</title>
+  <link rel="stylesheet"  href="../base-styles.css"/>
+</head>
+<body>
+  <h1>Test: iFrame malicioso</h1>
+  <p>Esta página intenta cargar un iframe desde un dominio externo no autorizado.</p>
+  
+  <!-- Este iframe generará una violación CSP -->
+  <iframe src="https://phishing-site.example.com/fake-login" width="500" height="300"></iframe>
+  
+  <div id="result">
+    <p>Si la política CSP está funcionando correctamente, el iframe debería ser bloqueado y se debería generar un reporte.</p>
+  </div>
+  
+  <p><a href="/">Volver al inicio</a></p>
+</body>
+</html>

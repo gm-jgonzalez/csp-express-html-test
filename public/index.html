@@ -1,0 +1,58 @@
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CSP Testing Tool</title>
+  <link rel="stylesheet" href="./styles.css">
+  
+</head>
+<body>
+  <h1>CSP Violation Test Cases</h1>
+  <p>Selecciona uno de los siguientes escenarios para generar reportes CSP específicos:</p>
+  
+  <ul>
+    <li>
+      <a href="/test/external-script">1. XSS (Script externo)</a>
+      <p>Prueba la carga de scripts desde dominios no autorizados.</p>
+    </li>
+    <li>
+      <a href="/test/inline-script">2. XSS (Script inline)</a>
+      <p>Prueba la ejecución de scripts inline sin nonce.</p>
+    </li>
+    <li>
+      <a href="/test/data-exfiltration">3. Exfiltración de datos</a>
+      <p>Prueba intentos de conexión a dominios externos no autorizados.</p>
+    </li>
+    <li>
+      <a href="/test/eval-usage">4. Uso de eval()</a>
+      <p>Prueba el uso de eval() cuando no está permitido.</p>
+    </li>
+    <li>
+      <a href="/test/style-injection">5. Inyección de estilo malicioso</a>
+      <p>Prueba la carga de estilos desde dominios no autorizados.</p>
+    </li>
+    <li>
+      <a href="/test/malicious-iframe">6. Iframe malicioso</a>
+      <p>Prueba la carga de iframes desde dominios no autorizados.</p>
+    </li>
+    <li>
+      <a href="/test/data-url">7. XSS basado en URLs data</a>
+      <p>Prueba el uso de data: URLs para evitar restricciones.</p>
+    </li>
+    <li>
+      <a href="/test/worker">8. Worker malicioso</a>
+      <p>Prueba la carga de web workers desde dominios no autorizados.</p>
+    </li>
+    <li>
+      <a href="/test/mime-type">9. Manejo incorrecto de MIME-type</a> <span class="text-bold">(Working on it)</span>
+      <p>Prueba el uso de recursos con tipo MIME incorrecto.</p>
+    </li>
+    <li>
+      <a href="/test/mime-type">10. Clickjacking</a> <span class="text-bold">(Working on it)</span>
+      <p>Prueba la carga de frame ancestors.</p>
+    </li>
+  </ul>
+</body>
+</html>

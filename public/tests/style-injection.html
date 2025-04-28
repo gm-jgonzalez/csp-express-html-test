@@ -1,0 +1,28 @@
+<!-- public/tests/style-injection.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: Style Injection</title>
+  <link rel="stylesheet"  href="../base-styles.css"/>
+
+  <!-- Esta etiqueta link generará una violación CSP -->
+  <link rel="stylesheet" href="https://evil-styles.example.com/malicious.css">
+  
+  <!-- También podemos probar estilos inline -->
+  <style>
+    body { background-color: lightblue; }
+  </style>
+</head>
+<body>
+  <h1>Test: Inyección de estilo malicioso</h1>
+  <p>Esta página intenta cargar estilos desde un dominio externo no autorizado.</p>
+  
+  <div id="result">
+    <p>Si la política CSP está funcionando correctamente, los estilos externos deberían ser bloqueados y se debería generar un reporte.</p>
+  </div>
+  
+  <p><a href="/">Volver al inicio</a></p>
+</body>
+</html>

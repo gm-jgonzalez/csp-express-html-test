@@ -1,0 +1,23 @@
+<!-- public/tests/data-exfiltration.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: Data Exfiltration</title>
+  <link rel="stylesheet"  href="../base-styles.css"/>
+  <!-- Permitir scripts inline para esta prueba específica -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; connect-src 'self'; report-uri http://localhost:8080/api/csp/report">
+</head>
+<body>
+  <h1>Test: Exfiltración de datos</h1>
+  <p>Esta página permite scripts inline pero intenta conectarse a un dominio externo.</p>
+  
+  <button id="exfiltrate">Intentar exfiltración de datos</button>
+  
+  
+  
+  <p><a href="/">Volver al inicio</a></p>
+  <script src="../data-exfiltration.js"></script>
+</body>
+</html>

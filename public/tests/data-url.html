@@ -1,0 +1,28 @@
+<!-- public/tests/data-url.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: Data URL</title>
+  <link rel="stylesheet"  href="../base-styles.css"/>
+</head>
+<body>
+  <h1>Test: XSS basado en URLs data</h1>
+  <p>Esta página intenta utilizar data: URLs para evadir restricciones CSP.</p>
+  
+  <!-- Esta imagen con data URL generará una violación CSP si data: no está permitido -->
+  <h3>Imagen con data URL maliciosa:</h3>
+  <img src="data:image/svg+xml;base64,PHN2ZyBvbmxvYWQ9ImFsZXJ0KCdYU1MgdmlhIFNWRycpIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjwvc3ZnPg==" alt="SVG malicioso">
+  
+  <!-- Este iframe con data URL también generará una violación -->
+  <h3>iFrame con data URL maliciosa:</h3>
+  <iframe src="data:text/html;base64,PHNjcmlwdD5hbGVydCgnWFNTIHZpYSBkYXRhIFVSTCcpOzwvc2NyaXB0Pg==" width="500" height="100"></iframe>
+  
+  <div id="result">
+    <p>Si la política CSP está funcionando correctamente, los recursos con data: URL deberían ser bloqueados y se debería generar un reporte.</p>
+  </div>
+  
+  <p><a href="/">Volver al inicio</a></p>
+</body>
+</html>

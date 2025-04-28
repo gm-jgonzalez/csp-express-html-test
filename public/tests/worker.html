@@ -1,0 +1,26 @@
+<!-- public/tests/worker.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test: Malicious Worker</title>
+  <link rel="stylesheet"  href="../base-styles.css"/>
+</head>
+<body>
+  <h1>Test: Worker malicioso</h1>
+  <p>Esta página intenta cargar un web worker desde un dominio externo no autorizado.</p>
+  
+  <button id="start-worker">Iniciar Worker malicioso</button>
+  
+
+  <div id="result">
+    <p>Si la política CSP está funcionando correctamente, el worker debería ser bloqueado y se debería generar un reporte.</p>
+  </div>
+  
+  <p><a href="/">Volver al inicio</a></p>
+  
+  <script src="../worker.js"></script>
+  
+</body>
+</html>
