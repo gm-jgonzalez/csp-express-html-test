@@ -7,8 +7,10 @@ const app = express();
 const PORT = 3000;
 
 // Tu servidor para recibir reportes CSP (actualiza esta URL)
-const CSP_REPORT_URL = 'http://localhost:8080/api/csp/report/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlsb2FkIjp7ImlkIjoiOWY4YzFiN2UtNGQzYS00YzJlLThiN2YtM2ExZDJlNmY5YTVjIiwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL3Rlc3QifSwiaWF0IjoxNzQ1ODQ4MDk4LCJleHAiOjE3NDU4NTg4OTh9.GJXtWQGHZ1jyhlsVn_Tpqv8X1FkGNZX8sOSienLNNdU';
-
+// const CSP_REPORT_URL = 'http://localhost:8080/api/csp/report/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlsb2FkIjp7ImlkIjoiOWY4YzFiN2UtNGQzYS00YzJlLThiN2YtM2ExZDJlNmY5YTVjIiwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL3Rlc3QifSwiaWF0IjoxNzQ1ODc5NTkwLCJleHAiOjE3NDU4OTAzOTB9.iqem1tC-xwwQBQS6wAlostiobw79o43BO0nUpZjAwAk';
+ const CSP_REPORT_URL = "https://3rbfsmhx7h.execute-api.us-east-1.amazonaws.com/dev/monitor/82A2A444D4?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlsb2FkIjp7fSwiaWF0IjoxNzQ3OTQzNjg5LCJleHAiOjE3NDc5NTQ0ODl9.AValNA_2HHryOxd2Bl0xIXmZ-4_gZrTso4gzDK6av-Q"
+// DE3D9A642D
+ //  82A2A444D4
 // Configure CORS
 const corsOptions = {
   origin: 'http://localhost:3000', // Allow requests from this origin
@@ -16,12 +18,20 @@ const corsOptions = {
   allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
   credentials: true, // Allow cookies to be sent with requests
 };
-
 app.use(cors(corsOptions)); // Apply the CORS middleware
 
-// Middleware para configurar CSP
 app.use((req, res, next) => {
-  // Política CSP restrictiva para probar violaciones
+  // Set the Report-To header (properly formatted)
+  res.setHeader("Report-To", JSON.stringify({
+    group: "csp-endpoint-1",
+    max_age: 300, // 5 minutes in seconds 
+    endpoints: [{ url: CSP_REPORT_URL }]
+  }));
+  
+  // Set the Reporting-Endpoints header
+  res.setHeader("Reporting-Endpoints", `csp-endpoint-1="${CSP_REPORT_URL}"`);
+  
+  // CSP policy with both report-uri and report-to
   const cspPolicy = [
     "default-src 'self'",
     "style-src 'self'",
@@ -32,21 +42,11 @@ app.use((req, res, next) => {
     "frame-src 'self'",
     "child-src 'self'",
     "worker-src 'none'",
-    `report-uri ${CSP_REPORT_URL}`
+    `report-uri ${CSP_REPORT_URL}`,
+    `report-to csp-endpoint-1`
   ].join('; ');
-
-
-  // Content-Security-Policy:
-  // default-src 'self';
-  // script-src 'self' https://apis.google.com https://www.googletagmanager.com https://www.google-analytics.com;
-  // style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
-  // frame-src https://www.youtube.com https://www.google.com;
-  // font-src 'self' https://fonts.gstatic.com;
-  // connect-src 'self' https://www.google-analytics.com;
-  // img-src 'self' data: https://www.google-analytics.com;
-
-
-  res.setHeader('Content-Security-Policy', cspPolicy)
+  
+  res.setHeader('Content-Security-Policy', cspPolicy);
   next();
 });
 
