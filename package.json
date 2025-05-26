@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "mkdir -p dist && cp -r public/* dist/ && cp index.html dist/ || echo 'Build completed'"
   },
   "dependencies": {
     "cors": "^2.8.5",

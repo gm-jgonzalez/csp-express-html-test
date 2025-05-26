@@ -1,14 +1,13 @@
 version: 1
-backend:
+frontend:
   phases:
     preBuild:
       commands:
         - npm install
     build:
-      commands: []
+      commands:
+        - npm run build
   artifacts:
-    baseDirectory: /
+    baseDirectory: dist
     files:
       - '**/*'
-  start:
-    command: npm start
