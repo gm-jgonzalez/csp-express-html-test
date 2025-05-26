@@ -4,11 +4,11 @@ const path = require('path');
 const cors = require('cors'); // Import the cors package
 const app = express();
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Tu servidor para recibir reportes CSP (actualiza esta URL)
 // const CSP_REPORT_URL = 'http://localhost:8080/api/csp/report/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlsb2FkIjp7ImlkIjoiOWY4YzFiN2UtNGQzYS00YzJlLThiN2YtM2ExZDJlNmY5YTVjIiwib3JpZ2luIjoiaHR0cDovL2xvY2FsaG9zdDozMDAwL3Rlc3QifSwiaWF0IjoxNzQ1ODc5NTkwLCJleHAiOjE3NDU4OTAzOTB9.iqem1tC-xwwQBQS6wAlostiobw79o43BO0nUpZjAwAk';
- const CSP_REPORT_URL = "https://3rbfsmhx7h.execute-api.us-east-1.amazonaws.com/dev/monitor/82A2A444D4?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlsb2FkIjp7fSwiaWF0IjoxNzQ3OTQzNjg5LCJleHAiOjE3NDc5NTQ0ODl9.AValNA_2HHryOxd2Bl0xIXmZ-4_gZrTso4gzDK6av-Q"
+ const CSP_REPORT_URL = "https://3rbfsmhx7h.execute-api.us-east-1.amazonaws.com/dev/monitor/DE3D9A642D?t=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqd3RQYXlsb2FkIjp7fSwiaWF0IjoxNzQ4MjcyMjk4LCJleHAiOjE3NDgzNTg2OTh9.tcPQrGD3YXYDEv4ZBqMljvwNg-68Ye4rpNBNsMtFV2c"
 // DE3D9A642D
  //  82A2A444D4
 // Configure CORS
@@ -43,7 +43,7 @@ app.use((req, res, next) => {
     "child-src 'self'",
     "worker-src 'none'",
     `report-uri ${CSP_REPORT_URL}`,
-    `report-to csp-endpoint-1`
+    // `report-to csp-endpoint-1`
   ].join('; ');
   
   res.setHeader('Content-Security-Policy', cspPolicy);
